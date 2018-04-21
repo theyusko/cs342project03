@@ -8,6 +8,8 @@ Course Page: http://www.cs.bilkent.edu.tr/~korpe/courses/cs342spring2018/index.h
 
 ------------------------------------------------------------------------------------------------------------------------------------------
 
-Group Members: 
-Berat Biçer, 21503050 
+Group Members:
+
+Berat Biçer, 21503050
+
 Ecem İlgün, 21502157
