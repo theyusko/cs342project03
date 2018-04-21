@@ -1,0 +1,23 @@
+struct vm_area_struct {
+    struct mm_struct *vm_mm; /* associated mm_struct */
+    unsigned long vm_start; /* VMA start, inclusive */
+    unsigned long vm_end; /* VMA end , exclusive */
+    struct vm_area_struct *vm_next; /* list of VMA's */
+    pgprot_t vm_page_prot; /* access permissions */
+    unsigned long vm_flags; /* flags */
+    struct rb_node vm_rb; /* VMA's node in the tree */
+    union { /* links to address_space->i_mmap or i_mmap_nonlinear */
+    struct {
+            struct list_head list;
+            void *parent;
+            struct vm_area_struct *head;
+        } vm_set;
+        struct prio_tree_node prio_tree_node;
+    } shared;
+    struct list_head anon_vma_node; /* anon_vma entry */
+    struct anon_vma *anon_vma; /* anonymous VMA object */
+    struct vm_operations_struct *vm_ops; /* associated ops */
+    unsigned long vm_pgoff; /* offset within file */
+    struct file *vm_file; /* mapped file, if any */
+    void *vm_private_data; /* private data */
+};

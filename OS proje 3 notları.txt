@@ -1,0 +1,69 @@
+Use 64 bit Ubuntu 16.04 & Intel x86_64 architecture
+0) Building the kernel
+"Learn" how to build the kernel from internet
+Download the source and build it
+Use "uname -r" to find your kernel version
+If you're using your own machine instead of a virtual one, backup your data beforehand
+This part is very long, building the kernel, but you only do it once
+
+1) Hello World Kernel Module
+Develop and run a new kernel module, load and run it in the kernel
+Sources:
+	- tldp.org/LDP/lkmpg/2.6/html/index.html
+	- lwn.net/Kernel/LDD3/
+		Look at Chapter 2: Building and Running Kernel Modules
+2) Developing a Kernel Module
+A kernel to get and print memory management information for a process
+Data to be retrieved:
+	- PCB
+	- Memory management data structures of the process
+	- top level page table
+Module should be able to be loaded to and unloaded from the kernel
+Workflow:
+a)Find PCB of the process by traversing the process list, or PCB list
+There may be a variable named "current" in kernel that is pointing to the PCB of the running process
+starting from it, traverse until you find what are you looking for
+There may be other methods as well
+b)After finding PCB, print virtual memory layout of the process
+Print the following:
+	- Start and end address of the virtual address, and size of the PCB
+	- Start and end address of data, stack, heap, main arguments, environmental variables; and their sizes
+	- # of frames used by the process
+	- Total virtual memory used by the process
+Use printk() function to do the printing, which will go to a log file in "/var/log/" address
+Commands like dmesg, more, cat, etc. can be used to inspect the file
+Verification:
+ - Go into /proc & change into the folder with name = pid
+ - Check details of these files for verification
+ - You may also use the following:
+	- top
+	- ps aux
+	- cat /proc/pid/maps
+	- cat /proc/meminfo
+	- cat /proc/vmstat
+	- cat /proc/zoneinfo
+c) Print top level page table content
+Parse each entry and print information
+64 bit ---> 4-level page table, 48-bit virtual address with first 16 bits all zeros
+	Division of virtual address: 9, 9, 9, 9, 12
+	Top level has 512 entries
+	This part requires architectural knowledge
+
+3) App allocating memory dynamically
+- Write a program that will allocate and deallocate memory(probably with malloc and free)
+- While application is running, get virtual memory information about this application using your kernel module (insert kernel module, run the program, remove module, verify results)
+- Make experiments
+	- Use different malloc parameters
+	- Call recursive functions to observe stack growth
+	- Compare malloc allocation and amount of extension in the heap
+	- OFC, graphs and report
+
+Additional Information
+- Note that kernel is a program running on CPU, and cannot access physical addresses directly. Thus, a proportion of a program's page table is used to map kernel virtual addresses
+- To access a physical frame, use kmap() function:
+	- Assume you want to access frame #34891
+	- use kmap(mem_map + 34891) gives the virtual address of that frame
+	- You can use te virtual address to access that frame
+	- For example, you can copy the frame content to the application buffer using that virtual address as the start virtual address of the frame to copy
+- printk() requires special formatting for printing unsigned integers (%u, etc.)
+- In kernel, you may not use printf, since kernel is not connected to the C Standard Library
