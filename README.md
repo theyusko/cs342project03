@@ -19,3 +19,5 @@ Ecem İlgün, 21502157
 Notes:
 
 1 - For heap test, make sure heap grows gradually. Otherwise, results are not accurate. For example, do not allocate 10^24 size integer array at once; allocate in steps of length 10^4 integers.
+
+2 - For stack test, make sure you don't overflow the stack; since default maximum size of stack is 8 MB.
