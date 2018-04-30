@@ -98,8 +98,6 @@ static void dump_heap_stack(struct mm_struct* mm) {
             printk("-----Heap Start: %lu\n", vma->vm_start);
             printk("-----Heap End: %lu\n", vma->vm_end);
             printk("-----Heap Size: %lu", absVal(vma->vm_start, vma->vm_end));
-            printk("-----Heap Size: %lu", absVal(vma->vm_start, vma->vm_end));
-            printk("-----Heap Size: %lu", absVal(vma->vm_start, vma->vm_end));
         }
         else if(vma->vm_start < mm->start_stack && vma->vm_end >= mm->start_stack) {
             printk("-----Stack Start: %lu\n", vma->vm_start);
