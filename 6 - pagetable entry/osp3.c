@@ -7,6 +7,8 @@
 #include <linux/moduleparam.h>
 #include <linux/mm.h>
 #include <linux/mm_types.h>
+#include <asm/page.h>
+#include <linux/highmem.h> 
 
 
 /*
