@@ -26,7 +26,7 @@ int main() {
 		tmp->next = (struct test*)malloc(sizeof(struct test));
 		tmp = tmp->next;
 		i++;
-		if(i%100 == 0) {
+		if(i%500 == 0) {
 			printf("%d", i);
 			printf("\nPress '*' to stop heap test, any other key to continue: ");
 			char x = getchar();
@@ -54,7 +54,8 @@ int main() {
 	printf("Stack Test...\n");
 	getchar();
 	getchar();
-	sum(50000);
+	
+	sum(5000);
 	
 	
 	printf("Press a key to exit: ");

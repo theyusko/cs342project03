@@ -129,27 +129,27 @@ int init_module() {
 	if(task != NULL && mm != NULL) {
         printk("Part 2a\n");
         printk("-----pid: %d\n", task->pid);
-		printk("-----Code Start: %lu\n", mm->start_code);
-		printk("-----Code End: %lu\n", mm->end_code);
-		printk("-----Code Size: %lu\n", absVal(mm->end_code, mm->start_code));
-		
-		printk("-----Data Start: %lu\n", mm->start_data);
-		printk("-----Data End: %lu\n", mm->end_data);
-		printk("-----Data Size: %lu\n", absVal(mm->start_data, mm->end_data));
+	printk("-----Code Start: %lu\n", mm->start_code);
+	printk("-----Code End: %lu\n", mm->end_code);
+	printk("-----Code Size: %lu\n", absVal(mm->end_code, mm->start_code));
 
-		printk("-----Arg Start: %lu\n", mm->arg_start);
-		printk("-----Arg End: %lu\n", mm->arg_end);
-		printk("-----Arg Size: %lu\n", absVal(mm->arg_start, mm->arg_end));
+	printk("-----Data Start: %lu\n", mm->start_data);
+	printk("-----Data End: %lu\n", mm->end_data);
+	printk("-----Data Size: %lu\n", absVal(mm->start_data, mm->end_data));
+
+	printk("-----Arg Start: %lu\n", mm->arg_start);
+	printk("-----Arg End: %lu\n", mm->arg_end);
+	printk("-----Arg Size: %lu\n", absVal(mm->arg_start, mm->arg_end));
+
+	printk("-----Env Start: %lu\n", mm->env_start);
+	printk("-----Env End: %lu\n", mm->env_end);
+	printk("-----Env Size: %lu\n", absVal(mm->env_start, mm->env_end));
+
+	printk("-----Total VM: %lu\n", mm->total_vm);
+	printk("-----Number of Frames: %lu\n", get_mm_rss(mm));
 		
-		printk("-----Env Start: %lu\n", mm->env_start);
-		printk("-----Env End: %lu\n", mm->env_end);
-		printk("-----Env Size: %lu\n", absVal(mm->env_start, mm->env_end));
-		
-		printk("-----Total VM: %lu\n", mm->total_vm);
-		printk("-----Number of Frames: %lu\n", get_mm_rss(mm));
-		
-		// Find Heap & Stack Boundaries
-		// vm-area-start vm-area-end vm-area-size
+	// Find Heap & Stack Boundaries
+	// vm-area-start vm-area-end vm-area-size
         printk("Part 2b\n");
         dump_heap_stack(mm);
 
