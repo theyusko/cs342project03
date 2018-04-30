@@ -1,0 +1,1 @@
+/usr/bin/cc -g   CMakeFiles/5___stack_test.dir/osp3.c.o CMakeFiles/5___stack_test.dir/test.c.o  -o 5___stack_test 

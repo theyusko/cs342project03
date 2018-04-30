@@ -1,0 +1,3 @@
+/home/yusko/Documents/CS342/cs342project03/5 - stack test/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/yusko/Documents/CS342/cs342project03/5 - stack test/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/yusko/Documents/CS342/cs342project03/5 - stack test/cmake-build-debug/CMakeFiles/5___stack_test.dir
